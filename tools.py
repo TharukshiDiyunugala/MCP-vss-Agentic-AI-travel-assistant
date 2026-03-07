@@ -44,3 +44,38 @@ SEARCH_HOTELS = ToolSpec(
 )
 
 TOOL_SPECS = [SEARCH_FLIGHTS, SEARCH_HOTELS]
+
+
+def search_flights(origin: str, destination: str, date: str) -> list[Dict[str, Any]]:
+    """Mock flight search used for architecture demonstrations."""
+    return [
+        {
+            "flight_id": "FL-102",
+            "origin": origin,
+            "destination": destination,
+            "date": date,
+            "price_usd": 420,
+        }
+    ]
+
+
+def search_hotels(city: str, check_in: str, check_out: str) -> list[Dict[str, Any]]:
+    """Mock hotel search used for architecture demonstrations."""
+    return [
+        {
+            "hotel_id": "HT-77",
+            "city": city,
+            "check_in": check_in,
+            "check_out": check_out,
+            "nightly_usd": 150,
+        }
+    ]
+
+
+def execute_tool(tool_name: str, payload: Dict[str, Any]) -> list[Dict[str, Any]]:
+    """Dispatch demo tool calls by name."""
+    if tool_name == "search_flights":
+        return search_flights(**payload)
+    if tool_name == "search_hotels":
+        return search_hotels(**payload)
+    raise ValueError(f"Unsupported tool: {tool_name}")
