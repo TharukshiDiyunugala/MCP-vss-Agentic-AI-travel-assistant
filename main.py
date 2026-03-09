@@ -2,6 +2,7 @@
 
 from pprint import pprint
 
+from adapters import MockTravelToolsAdapter
 from agentic_workflow import AgenticWorkflowRunner
 from agentic_agent_init import AgenticTravelAgentInitializer
 from mcp_workflow import MCPWorkflowRunner
@@ -12,6 +13,7 @@ from models import TravelRequest
 def main() -> None:
     mcp_agent = MCPTravelAgentInitializer().initialize()
     agentic_agent = AgenticTravelAgentInitializer().initialize()
+    adapter = MockTravelToolsAdapter()
     request = TravelRequest(
         origin="Colombo",
         destination="Singapore",
@@ -25,8 +27,8 @@ def main() -> None:
     print("\n=== Agentic AI Agent Initialization ===")
     pprint(agentic_agent.describe_architecture())
 
-    mcp_result = MCPWorkflowRunner(mcp_agent).run_trip_planning(request)
-    agentic_result = AgenticWorkflowRunner(agentic_agent).run_trip_planning(request)
+    mcp_result = MCPWorkflowRunner(mcp_agent, adapter).run_trip_planning(request)
+    agentic_result = AgenticWorkflowRunner(agentic_agent, adapter).run_trip_planning(request)
 
     print("\n=== Next Step: MCP Workflow Run ===")
     pprint(mcp_result)

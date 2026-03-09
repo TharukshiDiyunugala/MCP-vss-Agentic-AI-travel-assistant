@@ -5,14 +5,20 @@ This demonstrates explicit protocol-like tool calls with structured payloads.
 
 from typing import Any, Dict, List
 
+from adapters import MockTravelToolsAdapter, TravelToolsAdapter
 from mcp_agent_init import MCPAgentRuntime
 from models import TravelRequest, WorkflowResult
-from tools import execute_tool
+from tools import ToolExecutionError, ToolValidationError, execute_tool
 
 
 class MCPWorkflowRunner:
-    def __init__(self, runtime: MCPAgentRuntime) -> None:
+    def __init__(
+        self,
+        runtime: MCPAgentRuntime,
+        adapter: TravelToolsAdapter | None = None,
+    ) -> None:
         self.runtime = runtime
+        self.adapter = adapter or MockTravelToolsAdapter()
 
     def run_trip_planning(self, request: TravelRequest) -> WorkflowResult:
         steps: List[str] = []
@@ -23,7 +29,15 @@ class MCPWorkflowRunner:
             "date": request.depart_date,
         }
         steps.append(f"MCP tool call -> search_flights {flight_payload}")
-        flights = execute_tool("search_flights", flight_payload)
+        try:
+            flights = execute_tool("search_flights", flight_payload, self.adapter)
+        except (ToolValidationError, ToolExecutionError) as exc:
+            steps.append(f"MCP failure during flight lookup: {exc}")
+            return WorkflowResult(
+                architecture="MCP",
+                summary="Trip planning halted due to a tool error.",
+                steps=steps,
+            )
 
         hotel_payload: Dict[str, Any] = {
             "city": request.destination,
@@ -31,7 +45,15 @@ class MCPWorkflowRunner:
             "check_out": request.return_date,
         }
         steps.append(f"MCP tool call -> search_hotels {hotel_payload}")
-        hotels = execute_tool("search_hotels", hotel_payload)
+        try:
+            hotels = execute_tool("search_hotels", hotel_payload, self.adapter)
+        except (ToolValidationError, ToolExecutionError) as exc:
+            steps.append(f"MCP failure during hotel lookup: {exc}")
+            return WorkflowResult(
+                architecture="MCP",
+                summary="Trip planning halted due to a tool error.",
+                steps=steps,
+            )
 
         steps.append("MCP response synthesis from structured tool outputs")
         summary = (
