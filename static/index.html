@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP vs Agentic AI - Travel Assistant Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="canvas-glow"></div>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <p class="eyebrow">Travel Assistant Lab</p>
+                <h1>MCP vs Agentic AI</h1>
+                <p class="subtitle">Run identical prompts against two architectures and compare behavior in real time.</p>
+            </div>
+            <div class="header-actions">
+                <button id="infoBtn" class="btn btn-secondary">
+                    <i class="fas fa-circle-info"></i> Architecture
+                </button>
+                <button id="resetBtn" class="btn btn-primary">
+                    <i class="fas fa-rotate-right"></i> Reset Session
+                </button>
+            </div>
+        </header>
+
+        <section class="overview-cards">
+            <article class="overview-card">
+                <span>Messages</span>
+                <strong id="metricTotalMessages">0</strong>
+            </article>
+            <article class="overview-card">
+                <span>MCP Avg Latency</span>
+                <strong id="metricMcpLatency">0 ms</strong>
+            </article>
+            <article class="overview-card">
+                <span>Agentic Avg Latency</span>
+                <strong id="metricAgenticLatency">0 ms</strong>
+            </article>
+            <article class="overview-card">
+                <span>Shared Test Runs</span>
+                <strong id="metricDualRuns">0</strong>
+            </article>
+        </section>
+
+        <section class="quick-actions">
+            <p class="quick-actions-title">Test Prompts</p>
+            <div class="action-buttons">
+                <button class="action-btn" data-query="Find flights from Colombo to Singapore">
+                    <i class="fas fa-plane-departure"></i> Search Flights
+                </button>
+                <button class="action-btn" data-query="Search hotels in Singapore">
+                    <i class="fas fa-hotel"></i> Search Hotels
+                </button>
+                <button class="action-btn" data-query="Plan a trip to Tokyo">
+                    <i class="fas fa-route"></i> Plan Trip
+                </button>
+                <button class="action-btn" data-query="What can you help me with?">
+                    <i class="fas fa-lightbulb"></i> Capabilities
+                </button>
+            </div>
+        </section>
+
+        <main class="chat-container">
+            <section class="chat-panel mcp-panel">
+                <div class="panel-header mcp-header">
+                    <div class="agent-info">
+                        <span class="agent-icon"><i class="fas fa-server"></i></span>
+                        <div>
+                            <h2>MCP Agent</h2>
+                            <span class="architecture-badge">Model Context Protocol</span>
+                        </div>
+                    </div>
+                    <div class="status-indicator online" id="mcpStatus">
+                        <span class="pulse"></span>Live
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="mcpMessages">
+                    <div class="welcome-message">
+                        <h3>Protocol-Centric Execution</h3>
+                        <p>Designed around explicit tool schemas, server contracts, and deterministic request/response steps.</p>
+                        <div class="welcome-tags">
+                            <span>Schema-first</span>
+                            <span>Stateless calls</span>
+                            <span>Structured outputs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <input
+                        type="text"
+                        id="mcpInput"
+                        class="chat-input"
+                        placeholder="Ask MCP agent about flights, hotels, or trip planning"
+                        autocomplete="off"
+                    >
+                    <button id="mcpSend" class="btn btn-send" title="Send to MCP agent" aria-label="Send to MCP agent">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section class="chat-panel agentic-panel">
+                <div class="panel-header agentic-header">
+                    <div class="agent-info">
+                        <span class="agent-icon"><i class="fas fa-brain"></i></span>
+                        <div>
+                            <h2>Agentic AI</h2>
+                            <span class="architecture-badge">Autonomous Loop</span>
+                        </div>
+                    </div>
+                    <div class="status-indicator online" id="agenticStatus">
+                        <span class="pulse"></span>Live
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="agenticMessages">
+                    <div class="welcome-message">
+                        <h3>Reasoning-Centric Execution</h3>
+                        <p>Designed around iterative planning, action orchestration, and reflective refinement.</p>
+                        <div class="welcome-tags">
+                            <span>Observe/Plan/Act</span>
+                            <span>Subtasks</span>
+                            <span>Reflection loop</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <input
+                        type="text"
+                        id="agenticInput"
+                        class="chat-input"
+                        placeholder="Ask Agentic AI about flights, hotels, or trip planning"
+                        autocomplete="off"
+                    >
+                    <button id="agenticSend" class="btn btn-send" title="Send to Agentic AI" aria-label="Send to Agentic AI">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Built for side-by-side architecture validation.</p>
+            <a href="https://github.com/TharukshiDiyunugala/MCP-vss-Agentic-AI-travel-assistant" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> Project Repository
+            </a>
+        </footer>
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-circle-info"></i> Architecture Comparison</h2>
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3><i class="fas fa-server"></i> MCP Agent</h3>
+                    <div id="mcpInfo" class="info-content">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+                <div class="comparison-item">
+                    <h3><i class="fas fa-brain"></i> Agentic AI</h3>
+                    <div id="agenticInfo" class="info-content">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
