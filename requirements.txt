@@ -1,0 +1,15 @@
+# MCP vs Agentic AI Travel Assistant - Python Dependencies
+# Python 3.10+ is required for union type syntax (type | type).
+
+# Web Framework (Required for chat interface)
+Flask>=3.0.0
+Flask-CORS>=4.0.0
+
+# Core functionality uses only Python standard library
+# The CLI demo (main.py) has no dependencies
+
+# Development Dependencies (optional):
+# pytest>=7.4.0           # For unit testing
+# black>=23.0.0           # Code formatting
+# mypy>=1.5.0             # Type checking
+# flake8>=6.0.0           # Linting
