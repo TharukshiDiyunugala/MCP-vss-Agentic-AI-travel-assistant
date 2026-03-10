@@ -1,0 +1,117 @@
+╔═══════════════════════════════════════════════════════════════╗
+║  MCP vs Agentic AI Travel Assistant - QUICK START GUIDE      ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📋 REQUIREMENTS
+├─ Python 3.10 or higher ✓
+├─ Flask & Flask-CORS (for web interface) ✓
+└─ Web browser (Chrome, Firefox, Edge, etc.)
+
+
+🚀 INSTALLATION
+
+1. Open PowerShell or Command Prompt
+
+2. Navigate to project directory:
+   cd "e:\mcp vs agentic ai travel agent"
+
+3. Install dependencies:
+   pip install -r requirements.txt
+
+
+▶️ OPTION 1: WEB INTERFACE (RECOMMENDED) 
+
+1. Start the Flask server:
+   python app.py
+
+2. Open your web browser and go to:
+   http://localhost:5000
+
+3. You'll see TWO chatbots side-by-side:
+   • Left (Blue): MCP Agent - Protocol-based architecture
+   • Right (Purple): Agentic AI - Autonomous loop architecture
+
+4. Try these queries:
+   • Click "✈️ Search Flights" button
+   • Click "🏨 Search Hotels" button  
+   • Click "🗺️ Plan Trip" button
+   • Type your own questions!
+
+5. Compare how each agent responds differently!
+
+
+▶️ OPTION 2: COMMAND LINE DEMO
+
+Simply run:
+   python main.py
+
+This executes both agents with a pre-configured trip and shows results.
+
+
+✅ WHAT YOU'LL SEE (WEB INTERFACE)
+
+┌──────────────────────────────────────────────────────────────┐
+│  MCP Agent (Blue)          │  Agentic AI (Purple)            │
+├────────────────────────────┼─────────────────────────────────┤
+│  Uses protocol-based       │  Uses autonomous planning       │
+│  tool coordination         │  with Observe-Plan-Act-Reflect  │
+│                            │                                  │
+│  Direct tool calls         │  Subtask decomposition          │
+│  Structured responses      │  Self-reflection                │
+│  Stateless execution       │  Memory-informed decisions      │
+└────────────────────────────┴─────────────────────────────────┘
+
+Watch how they process the SAME query differently!
+
+
+💡 EXAMPLE QUERIES TO TRY
+
+"Find flights from Colombo to Singapore"
+"Search hotels in Singapore"
+"Plan a trip to Tokyo"
+"What can you help me with?"
+
+
+🎯 KEY DIFFERENCES TO OBSERVE
+
+MCP Agent will:
+├─ Show explicit protocol tool calls
+├─ Return structured JSON-like responses
+└─ Execute stateless operations
+
+Agentic AI will:
+├─ Show planning and reasoning steps
+├─ Break tasks into subtasks
+├─ Include reflection on results
+└─ Use memory and context
+
+
+🔧 WEB INTERFACE FEATURES
+
+• 💬 Dual chat windows for direct comparison
+• 🚀 Quick action buttons for common queries  
+• 🔄 Reset button to start fresh conversations
+• ℹ️ Info button to view architecture details
+• 📱 Responsive design works on mobile too!
+
+
+📝 CUSTOMIZATION
+
+To change the default travel request in CLI demo:
+Edit main.py, lines 13-18
+
+To modify agent responses:
+Edit app.py for custom logic
+
+
+💻 STOPPING THE WEB SERVER
+
+Press Ctrl+C in the terminal running the Flask server
+
+
+═══════════════════════════════════════════════════════════════
+
+🌐 WEB INTERFACE: python app.py → http://localhost:5000
+📟 CLI DEMO: python main.py
+
+═══════════════════════════════════════════════════════════════
